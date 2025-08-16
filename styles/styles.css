@@ -12,5 +12,12 @@
 body {
     font-family: var(--font-primary);
     color: var(--azul-primary);
+}
 
+.card {
+    max-width: 300px;
+}
+.card svg {
+    min-height: 80px;
+    padding: 1rem;
 }

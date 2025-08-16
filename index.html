@@ -16,15 +16,15 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-expand-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Formatura | Laura Dias</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                     aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse align-item-center" id="mainNav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -39,26 +39,32 @@
     <main>
         <div class="container text-center mt-4">
             <h1><i class="fa-regular fa-hourglass"></i> Cápsula do Tempo da Laura</h1>
-            <h2>Adicione as fotos tiradas no evento! <br> É fácil, rápido e você pode visualiza-las quando quiser.</h2>
-            <div class="row justify-content-center align-item-cente my-5">
-                <div class="col-8 my-3">
+            <h2>Adicione as fotos tiradas no evento! <br> É fácil, rápido e você pode visualizá-las quando quiser.</h2>
+            <div class="row justify-content-center">
+                <div class="col-4 my-3">
                     <img src="assets/imgs/Laura.jpg" alt="Imagem Laura" class="img-fluid">
                 </div>
-                <div class="col-sm-6 my-3">
+            </div>
+            <div class="row justify-content-center align-item-center my-5">
+                <div class="col-sm-6 col-md-3 my-3">
                     <div class="card">
                         <i class="fa-regular fa-image"></i>
                         <div class="card-body">
                             <p class="card-text">Adicione suas fotos do evento.</p>
-                            <button class="btn btn-secondary">Adicionar</button>
+                            <form action="">
+                                <button class="btn btn-light">Adicionar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 my-3">
-                    <div class="card">
+                <div class="col-sm-6 col-md-3 my-3">
+                    <div class="card justify-content-center align-item-center">
                         <i class="fa-solid fa-video"></i>
                         <div class="card-body">
                             <p class="card-text">Adicione os vídeos do evento.</p>
-                            <button class="btn btn-secondary">Adicionar</button>
+                            <form action="">
+                                <button type="submit" class="btn btn-light">Adicionar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
