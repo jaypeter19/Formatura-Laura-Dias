@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Ramillas-Regular';
+    src: url(fonts/TT\ Ramillas\ Initials\ Trial\ Regular.ttf) format(truetype);
+}
+
+:root {
+    --azul-primary: #375c7c;
+    --amarelo-primary: #ffde59;
+    --font-primary: 'Ramillas-Regular'
+}
+
+body {
+    font-family: var(--font-primary);
+}
