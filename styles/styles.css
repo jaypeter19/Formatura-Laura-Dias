@@ -17,7 +17,7 @@ body {
 .card {
     max-width: 300px;
 }
-.card svg {
-    min-height: 80px;
+.card i {
+    font-size: 80px;
     padding: 1rem;
 }
