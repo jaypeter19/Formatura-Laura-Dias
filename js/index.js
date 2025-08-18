@@ -1,23 +1,26 @@
-// Variables Set
+// Set variables
 const cloudName = 'djbpyhruu';
-const unsignedPreset = "formatura_laura"; // seu upload preset unsigned
+const unsignedPreset = "formatura_laura"; //Folder
 
-// Selectors 
+// Upload buttons
 const btnUploadImg = document.getElementById("btnImgUpload");
 const btnUploadVideo = document.getElementById("btnVideoUpload");
 
+//Files inputs for images and videos
+const inputImg = document.getElementById("imgs");
+const inputVideo = document.getElementById("videos");
 
-const inputImg = document.getElementById("imgUpload");
-const inputVideo = document.getElementById("videosUpload");
-
-const previewContainer = document.getElementById("previewContainer");
-const enviarBtn = document.getElementById("btnEnviar");
-
-// Clicar no botão abre o input hidden
+// Fire event for files inputs
 btnUploadImg.addEventListener("click", () => inputImg.click());
 btnUploadVideo.addEventListener("click", () => inputVideo.click());
 
 
+//Modal Preview Selectors
+const previewContainer = document.getElementById("previewContainer");
+const enviarBtn = document.getElementById("btnEnviar");
+const excluirBtn = document.getElementById('btnExcluir');
+
+//Arquivos selecionados
 let arquivosSelecionados = [];
 
 // Quando usuário selecionar arquivos
@@ -45,7 +48,7 @@ function handleFiles(files) {
         reader.readAsDataURL(file);
     });
 
-    // abre o modal
+    // Open modal
     const modal = new bootstrap.Modal(document.getElementById("previewModal"));
     modal.show();
 }
@@ -53,26 +56,61 @@ function handleFiles(files) {
 inputImg.addEventListener("change", () => handleFiles(inputImg.files));
 inputVideo.addEventListener("change", () => handleFiles(inputVideo.files));
 
-// Upload para Cloudinary
+// Upload for Cloudinary
 enviarBtn.addEventListener("click", async () => {
     if (!arquivosSelecionados.length) return;
 
-    for (let file of arquivosSelecionados) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", unsignedPreset);
-        formData.append("tags", "festa");
+    try {
+        for (let file of arquivosSelecionados) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", unsignedPreset);
 
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
-            method: "POST",
-            body: formData
-        });
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
+                method: "POST",
+                body: formData
+            });
 
-        const data = await res.json();
-        console.log("Upload feito:", data.secure_url);
+            const data = await res.json();
+            console.log('Upload feito: ', data);
+
+            // Limpa e fecha modal após todos os uploads
+            arquivosSelecionados = [];
+            previewContainer.innerHTML = "";
+            bootstrap.Modal.getInstance(document.getElementById("previewModal")).hide();
+
+            // reset inputs
+            inputImg.value = "";
+            inputVideo.value = "";
+
+            const toastSuccess = document.getElementById('successToast');
+            toastSuccess.style.display = 'block';
+
+        }
+    } catch (error) {
+        console.error(error);
+
+        arquivosSelecionados = [];
+        previewContainer.innerHTML = "";
+        bootstrap.Modal.getInstance(document.getElementById("previewModal")).hide();
+
+        // reset inputs
+        inputImg.value = "";
+        inputVideo.value = "";
+
+        const toastError = document.getElementById('errorToast');
+        toastError.style.display = 'block';
     }
+});
 
+// Delete files selected
+
+excluirBtn.addEventListener('click', () => {
     arquivosSelecionados = [];
     previewContainer.innerHTML = "";
+
+    // reset inputs
+    inputImg.value = "";
+    inputVideo.value = "";
     bootstrap.Modal.getInstance(document.getElementById("previewModal")).hide();
-});
+})
