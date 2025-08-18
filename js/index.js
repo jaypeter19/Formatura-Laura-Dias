@@ -20,7 +20,7 @@ const previewContainer = document.getElementById("previewContainer");
 const enviarBtn = document.getElementById("btnEnviar");
 const excluirBtn = document.getElementById('btnExcluir');
 
-//Arquivos selecionados
+//Arquivos selecionados e array de URls para imagens e videos
 let arquivosSelecionados = [];
 
 // Quando usuário selecionar arquivos
@@ -37,11 +37,13 @@ function handleFiles(files) {
                 element.src = e.target.result;
                 element.classList.add("img-thumbnail");
                 element.style.maxWidth = "200px";
+                element.style.objectFit = "cover";
             } else if (file.type.startsWith("video")) {
                 element = document.createElement("video");
                 element.src = e.target.result;
                 element.controls = true;
                 element.style.maxWidth = "250px";
+                element.style.objectFit = "cover";
             }
             previewContainer.appendChild(element);
         };
@@ -56,15 +58,21 @@ function handleFiles(files) {
 inputImg.addEventListener("change", () => handleFiles(inputImg.files));
 inputVideo.addEventListener("change", () => handleFiles(inputVideo.files));
 
+
+
 // Upload for Cloudinary
 enviarBtn.addEventListener("click", async () => {
     if (!arquivosSelecionados.length) return;
+
+    // Defina as tags desejadas
+    const tags = "formatura"; // Adicione suas tags aqui
 
     try {
         for (let file of arquivosSelecionados) {
             const formData = new FormData();
             formData.append("file", file);
             formData.append("upload_preset", unsignedPreset);
+            formData.append("tags", tags)
 
             const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
                 method: "POST",
@@ -74,19 +82,20 @@ enviarBtn.addEventListener("click", async () => {
             const data = await res.json();
             console.log('Upload feito: ', data);
 
-            // Limpa e fecha modal após todos os uploads
-            arquivosSelecionados = [];
-            previewContainer.innerHTML = "";
-            bootstrap.Modal.getInstance(document.getElementById("previewModal")).hide();
-
-            // reset inputs
-            inputImg.value = "";
-            inputVideo.value = "";
-
-            const toastSuccess = document.getElementById('successToast');
-            toastSuccess.style.display = 'block';
-
         }
+        // Limpa e fecha modal após todos os uploads
+        arquivosSelecionados = [];
+        previewContainer.innerHTML = "";
+        bootstrap.Modal.getInstance(document.getElementById("previewModal")).hide();
+
+        // reset inputs
+        inputImg.value = "";
+        inputVideo.value = "";
+
+        const toastSuccess = document.getElementById('successToast');
+        toastSuccess.style.display = 'block';
+
+
     } catch (error) {
         console.error(error);
 

@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const cloudName = "djbpyhruu"; // substitua pelo seu
-    const tag = "festa"; // mesma usada no upload
+    const tag = "formatura"; // mesma usada no upload
 
     async function loadGallery() {
         try {
-            const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`);
+            const res = await fetch(`https://res.cloudinary.com/${cloudName}/any/list/${tag}.json`);
             const data = await res.json();
             console.log(data);
 
