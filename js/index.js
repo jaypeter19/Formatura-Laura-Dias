@@ -16,6 +16,9 @@ const previewContainer = document.getElementById("previewContainer");
 const enviarBtn = document.getElementById("btnEnviar");
 const excluirBtn = document.getElementById('btnExcluir');
 
+// Spinner selector
+const spinner = document.getElementById('loadingSpinner');
+
 //Arquivos selecionados e array de URls para imagens e videos
 let arquivosSelecionados = [];
 
@@ -49,6 +52,8 @@ function handleFiles(files, type) {
 
 async function uploadFiles(files) {
     if (!files.length) return;
+
+    spinner.style.display = 'block';
 
     try {
         for (let file of files) {
@@ -97,6 +102,8 @@ async function uploadFiles(files) {
         // Toast de erro
         const toastError = document.getElementById("errorToast");
         bootstrap.Toast.getOrCreateInstance(toastError).show();
+    } finally {
+        spinner.style.display = 'none';
     }
 }
 
