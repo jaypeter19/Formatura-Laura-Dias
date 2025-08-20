@@ -22,6 +22,9 @@ body {
     padding: 1rem;
     color: #000;
 }
+.card-text {
+    color: var(--azul-primary);
+}
 
 
 @media only screen and (max-width: 768px) {
