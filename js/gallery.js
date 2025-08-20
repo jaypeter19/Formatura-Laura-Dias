@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 gallery.appendChild(col);
             });
         } catch (err) {
+            const gallery = document.getElementById("gallery");
+            const col = document.createElement("div");
+            col.className = "col-8 mb-4";
+            col.innerHTML = 'ERRO AO CARREGAR GALERIA!';
+            gallery.appendChild(col);
             console.error("Erro ao carregar galeria", err);
         }
     }
