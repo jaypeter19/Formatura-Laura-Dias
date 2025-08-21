@@ -19,13 +19,12 @@ const excluirBtn = document.getElementById('btnExcluir');
 // Spinner selector
 const spinner = document.getElementById('loadingSpinner');
 
-//Arquivos selecionados e array de URls para imagens e videos
+
 let arquivosSelecionados = [];
 
-// Quando usuário selecionar arquivos
 function handleFiles(files, type) {
-    arquivosSelecionados = [...files]; // sobrescreve lista
-
+    arquivosSelecionados = [...files];
+    
     if (type === 'image') {
         arquivosSelecionados.forEach(file => {
             const reader = new FileReader();
@@ -40,11 +39,9 @@ function handleFiles(files, type) {
             reader.readAsDataURL(file);
         });
 
-        // Abre modal apenas para imagens
         const modal = new bootstrap.Modal(document.getElementById("previewModal"));
         modal.show();
     } else if (type === "video") {
-        // Vídeos vão direto para upload
         uploadFiles(arquivosSelecionados);
     }
 };
