@@ -22,7 +22,7 @@ let arquivosSelecionados = [];
 
 function handleFiles(files, type) {
     arquivosSelecionados = [...files];
-    
+
     if (type === 'image') {
         arquivosSelecionados.forEach(file => {
             const reader = new FileReader();
@@ -49,6 +49,9 @@ async function uploadFiles(files) {
     spinner.style.display = 'block';
 
     try {
+        const modal = new bootstrap.Modal(document.getElementById("previewModal"));
+        if (modal) modal.hide();
+
         for (let file of files) {
             const formData = new FormData();
             formData.append("file", file);
@@ -59,7 +62,6 @@ async function uploadFiles(files) {
                 method: "POST",
                 body: formData
             });
-
             console.log('Upload feito!');
         }
 
@@ -67,11 +69,6 @@ async function uploadFiles(files) {
         arquivosSelecionados = [];
         previewContainer.innerHTML = "";
         inputImg.value = "";
-
-        // Fecha modal se for imagem
-        const modalEl = document.getElementById("previewModal");
-        const modal = bootstrap.Modal.getInstance(modalEl);
-        if (modal) modal.hide();
 
         // Toast de sucesso
         const toastSuccess = document.getElementById("successToast");
