@@ -67,7 +67,6 @@ async function uploadFiles(files) {
         arquivosSelecionados = [];
         previewContainer.innerHTML = "";
         inputImg.value = "";
-        inputVideo.value = "";
 
         // Fecha modal se for imagem
         const modalEl = document.getElementById("previewModal");
@@ -85,7 +84,6 @@ async function uploadFiles(files) {
         arquivosSelecionados = [];
         previewContainer.innerHTML = "";
         inputImg.value = "";
-        inputVideo.value = "";
 
         // Fecha modal se aberto
         const modalEl = document.getElementById("previewModal");
