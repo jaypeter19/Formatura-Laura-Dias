@@ -48,9 +48,13 @@ async function uploadFiles(files) {
 
     spinner.style.display = 'block';
 
+
     try {
-        const modal = new bootstrap.Modal(document.getElementById("previewModal"));
+
+        const modalEl = document.getElementById("previewModal");
+        const modal = bootstrap.Modal.getInstance(modalEl);
         if (modal) modal.hide();
+
 
         for (let file of files) {
             const formData = new FormData();
