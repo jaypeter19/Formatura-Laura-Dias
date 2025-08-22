@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (item.resource_type === "image") {
                     col.innerHTML = `<img src="https://res.cloudinary.com/${cloudName}/image/upload/${item.public_id}.${item.format}"class="img-fluid">`;
-                } else if (item.resource_type === "video") {
-                    col.innerHTML = `<video controls class="img-fluid rounded shadow-sm"><source src="https://res.cloudinary.com/${cloudName}/video/upload/${item.public_id}.${item.format}" type="video/${item.format}"></video>`;
                 }
 
                 gallery.appendChild(col);
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const gallery = document.getElementById("gallery");
             const col = document.createElement("div");
             col.className = "col-12 mb-4";
-            col.innerHTML = 'ERRO AO CARREGAR GALERIA!';
+            col.innerHTML = 'Nenhuma imagem encontrada!';
             gallery.appendChild(col);
             console.error("Erro ao carregar galeria", err);
         }

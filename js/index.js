@@ -5,11 +5,9 @@ const tags = "formatura"; //Tags utilized
 
 // Upload buttons
 const btnUploadImg = document.getElementById("btnImgUpload");
-const btnUploadVideo = document.getElementById("btnVideoUpload");
 
 //Files inputs for images and videos
 const inputImg = document.getElementById("imgs");
-const inputVideo = document.getElementById("videos");
 
 //Modal Preview Selectors
 const previewContainer = document.getElementById("previewContainer");
@@ -41,8 +39,6 @@ function handleFiles(files, type) {
 
         const modal = new bootstrap.Modal(document.getElementById("previewModal"));
         modal.show();
-    } else if (type === "video") {
-        uploadFiles(arquivosSelecionados);
     }
 };
 
@@ -106,11 +102,9 @@ async function uploadFiles(files) {
 
 // Fire event for files inputs
 btnUploadImg.addEventListener("click", () => inputImg.click());
-btnUploadVideo.addEventListener("click", () => inputVideo.click());
 
 //Event Listener for input files imgs and videos
 inputImg.addEventListener("change", () => handleFiles(inputImg.files, "image"));
-inputVideo.addEventListener("change", () => handleFiles(inputVideo.files, "video"));
 
 // Upload for Cloudinary
 enviarBtn.addEventListener("click", async () => uploadFiles(arquivosSelecionados));
@@ -124,7 +118,6 @@ excluirBtn.addEventListener('click', () => {
 
     //Reset inputs
     inputImg.value = "";
-    inputVideo.value = "";
     const modalEl = document.getElementById("previewModal");
     const modal = bootstrap.Modal.getInstance(modalEl);
     if (modal) modal.hide();
