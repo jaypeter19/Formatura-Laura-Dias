@@ -42,8 +42,9 @@
     </header>
     <main>
         <div class="container text-center mt-4">
-            <h1><i class="fa-regular fa-hourglass"></i> Cápsula do Tempo da Laura</h1>
-            <h2>Adicione suas fotos tiradas na festa de formatura da Laura! Utilize o botão abaixo e clique em Galeria para visualizar.</h2>
+            <h1><i class="fa-solid fa-hourglass-half"></i> Cápsula do Tempo</h1>
+            <h2>Me empresta teu olhar? <br>Compartilha as fotos da minha formatura aqui e me ajuda a lembrar
+                de cada detalhe!</h2>
             <!-- Toasts container -->
             <div class="toast-container position-fixed top-0 end-0 p-3">
                 <!-- Toast Success -->
@@ -70,6 +71,12 @@
                 </div>
             </div>
             <div class="row justify-content-evenly align-item-center my-5">
+                <!-- Spinner container -->
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status" id="loadingSpinner" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
                 <div class="col-sm-10 col-md-4 my-3">
                     <img src="assets/imgs/Polaroid-Laura.png" alt="Imagem Laura" class="img-fluid">
                 </div>
@@ -79,17 +86,19 @@
                         <div class="card-body">
                             <p class="card-text">Adicione suas fotos do evento.</p>
                             <input type="file" name="files[imgs]" id="imgs" accept="image/*" multiple hidden>
-                            <button type="submit" class="btn btn-light" id="btnImgUpload">Adicionar</button>
+                            <button type="submit" class="btn btn-light mb-3" id="btnImgUpload">Adicionar</button>
                         </div>
                     </div>
-                </div>
-                <!-- Spinner container -->
-                <div class="d-flex justify-content-center my-5">
-                    <div class="spinner-border" role="status" id="loadingSpinner" style="display: none;">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
+                    <a href="/Formatura-Laura-Dias/galeria" class="btn my-5">Galeria</a>
                 </div>
             </div>
+            <footer class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="muted">Cada clique é um pedacinho da história, bora compartilha comigo?</p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </main>
     <!-- Modal Previews -->
